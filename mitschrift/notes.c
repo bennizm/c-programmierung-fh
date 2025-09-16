@@ -1,5 +1,5 @@
 /*
- * COMPILER INSTALLIEREN
+ * COMPILER INSTALLIEREN (mit WSL)
  * 1) unter windoof
  *    a) WSL (windows subsystem for linux) installieren
  *       "wsl --install" auf der Windows-Powershell eingeben
