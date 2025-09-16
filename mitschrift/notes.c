@@ -8,7 +8,7 @@
  *       c1) "sudo apt-get install gcc-mingw-w64" um in windows executables ".exe" zu kompilieren
  *       c2) "sudo apt-get install gcc" um in linux executables zu kompilieren
  *
- *   compiler müssten nun funktionieren (siehe nächsten Kommentar "KOMPILIEREN"
+ *   compiler müssten nun funktionieren (siehe nächsten Kommentar "KOMPILIEREN")
  */
 
 /*
