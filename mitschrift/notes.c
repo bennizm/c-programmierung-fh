@@ -19,9 +19,34 @@
  * for linux executable files: "gcc -Wall -o <example> <example>.c"
  */
 
+#include <stdbool.h>
 #include <stdio.h>
+#include <windows.h>
+
+
+/**
+ * Beispiel for-Schleife
+ */
+void forSchleife() {
+    for (int i = 0; i < 5; i++) {
+        printf("*\n");
+    }
+    printf("done\n");
+}
+
+/**
+ * Beispiel while-Schleife
+ */
+void whileSchleife() {
+    int a = 0;
+    while (a < 10) {
+        printf("a=%d\n", a);
+        Sleep(1000);
+        a++;
+    }
+}
 
 int main() {
-    printf("compiled");
+    whileSchleife();
     return 0;
 }
