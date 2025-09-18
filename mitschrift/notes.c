@@ -18,6 +18,10 @@
  * for windows ".exe" files: "x86_64-w64-mingw32-gcc -Wall -o <example>.exe <example>.c"
  * for linux executable files: "gcc -Wall -o <example> <example>.c"
  */
+
+#include <stdio.h>
+
 int main() {
+    printf("compiled");
     return 0;
 }
