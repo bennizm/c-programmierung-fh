@@ -7,8 +7,10 @@
  * <stdio.h> braucht man für printf und scanf.
  * <stdlib.h> braucht man für die methode rand() zur zufallsgenerierung.
  */
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
 
 /**
  * hier werden die konstanten definiert.
@@ -42,60 +44,82 @@ int computerChoiceRandom() {
  * @param wins die anzahl der gewinne des spielers
  * @param losses die anzahl wie oft der spieler verkackt hat
  */
-void ssp(int wins, int losses) {
+void ssp() {
     //TODO: Erklärung für alles folgende bin schon zu müde heut DAMN
+
+    int wins = 0;
+    int losses = 0;
+
     const char * literals[] = {
         "Schere",
         "Stein",
         "Papier"
     };
 
+    while (true) {
+        int computerChoice = computerChoiceRandom();
+        int playerChoice = 0;
 
-    int computerChoice = computerChoiceRandom();
-    int playerChoice;
-
-    printf(
-        "Willkommen bei Schere-Stein-Papier\n"
-            "Gib \"0\" fuer schere, \"1\" fuer stein oder \"2\" fuer papier ein "
-            "und lasse dein Glueck fuer dich entscheiden\n"
-            "Dein Aktueller Spielstand:\n"
-            "%dx gewonnen!\n"
-            "%dx verloren.\n", wins, losses);
-    scanf("%d", &playerChoice);
+        printf(
+            "Willkommen bei Schere-Stein-Papier\n"
+                "Gib \"0\" fuer schere, \"1\" fuer stein oder \"2\" fuer papier ein "
+                "und lasse dein Glueck fuer dich entscheiden\n"
+                "Beende das spiel mit \"-1\"\n"
+                "Dein Aktueller Spielstand:\n"
+                "%dx gewonnen!\n"
+                "%dx verloren.\n", wins, losses);
 
 
+        do {
+            if (playerChoice < -1 || playerChoice > 2) {
+                printf("Fehlerhafte eingabe, bitte nochmal versuchen (diesmal was gscheites): \n");
+            }
+            scanf("%d", &playerChoice);
+        } while (playerChoice < -1 || playerChoice > 2);
 
-    if (playerChoice == -1) {
-        printf("Spiel beendet\nTschau mit Au\n");
-        return;
-    }
+        if (playerChoice == -1) {
+            printf("Spiel wird beendet\nSelbstzerstoerung in\n\n");
+            Sleep(1000);
+            printf("5\n");
+            Sleep(1000);
+            printf("4\n");
+            Sleep(1000);
+            printf("3\n");
+            Sleep(1000);
+            printf("2\n");
+            Sleep(1000);
+            printf("1\n");
+            Sleep(1000);
 
-    printf(
-        "Du entscheidest dich fuer %s\n"
-        "Computer entscheidet sich fuer %s\n",
-        playerChoice >= 0 && playerChoice <=2 ? literals[playerChoice] : "eine Zahl die es nicht gibt\nWas fuer ein Schwachsinn", literals[computerChoice]
-        );
+            return;
+        }
 
-    printf("\nStatus:\n");
-    if(playerChoice == computerChoice) {
-        printf("unentschieden 8=====D\n");
-    } else {
-        if(
-            (playerChoice == SCISSOR && computerChoice == PAPER) ||
-            (playerChoice == ROCK && computerChoice == SCISSOR) ||
-            (playerChoice == PAPER && computerChoice == ROCK)
-            ) {
+        printf(
+            "Du entscheidest dich fuer %s\n"
+            "Computer entscheidet sich fuer %s\n",
+            literals[playerChoice], literals[computerChoice]
+            );
+
+        printf("\nStatus:\n");
+        if(playerChoice == computerChoice) {
+            printf("unentschieden\n");
+        } else {
+            if(
+                (playerChoice == SCISSOR && computerChoice == PAPER) ||
+                (playerChoice == ROCK && computerChoice == SCISSOR) ||
+                (playerChoice == PAPER && computerChoice == ROCK)
+                ) {
                 printf(">>> gewonnen! <<<\n");
                 wins++;
-            } else {
-                printf("verloren :c\n");
-                losses++;
-            }
+                } else {
+                    printf("verloren :c\n");
+                    losses++;
+                }
+        }
+        printf("------------------------------\n\n");
     }
-    printf("------------------------------\n\n");
-    ssp(wins, losses);
 }
 
 int main() {
-    ssp(0, 0);
+    ssp();
 }
