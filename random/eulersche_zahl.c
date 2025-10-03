@@ -1,6 +1,11 @@
 
 #include <stdio.h>
 
+/**
+ * Eulersche Zahl berechnen
+ * @param n Rechenoperationswiederholung
+ * @return Annähernde Eulersche Zahl mit Genauigkeit abhängig von @param n
+ */
 double calcE(int n) {
     double e = 1;
     double temp;
